@@ -1,0 +1,30 @@
+<ion-header [translucent]="true">
+  <ion-menu>
+      <ion-item>Pedidos</ion-item>
+      <ion-item>Cerrar sesion</ion-item>
+  </ion-menu>
+  <ion-title class="ion-padding">Bienvenido</ion-title>
+  <ion-button (click)="logout()">Cerrar sesion</ion-button>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-card>
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-button>Pedidos</ion-button>
+          <ion-button>Mensajes</ion-button>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card>
+</ion-content>
+  
+  <ion-button (click)="play()">Play</ion-button>
+  <ion-button (click)="pause()">Pause</ion-button>
+  <ion-button (click)="stop()">Stop</ion-button>

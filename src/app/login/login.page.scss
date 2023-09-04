@@ -1,0 +1,14 @@
+ion-card-animated {
+    color: white;
+    opacity: 0.5;
+    background: white;
+    margin: 10px;
+  
+    --background: red;
+  }
+  
+  @media (prefers-color-scheme: dark) {
+    ion-card-animated {
+      --background: green;
+    }
+  }

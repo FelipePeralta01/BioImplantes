@@ -1,0 +1,7 @@
+{
+  "name": "BioImplantes",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
