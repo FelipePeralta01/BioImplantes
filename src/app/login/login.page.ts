@@ -29,7 +29,7 @@ export class LoginPage implements OnInit {
         Validators.maxLength(8),
         Validators.minLength(8),
         Validators.required,
-        Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[a-zA-Z0-9]+$')
+        Validators.pattern('^(?=.*[a-z]{1,3})(?=.*[A-Z]{1})(?=.*[0-9]{4})[a-zA-Z0-9]+$')
       ]))
     })
    }
@@ -52,14 +52,7 @@ export class LoginPage implements OnInit {
       this.navCtrl.navigateRoot('home');
     }
 
-    var username = {
-      name: f.name,
-    }
-    var userPassword = {
-      password: f.password
-    }
-
-    localStorage.setItem('user', f.name);
+    localStorage.setItem('name', f.name);
     localStorage.setItem('password', f.password);
   }
 
@@ -86,10 +79,6 @@ export class LoginPage implements OnInit {
   onWillDismiss(event: Event) {
     const ev = event as CustomEvent<OverlayEventDetail<string>>;
     if (ev.detail.role === 'confirm') {
-      
     }
   }
-
-  
-
 }

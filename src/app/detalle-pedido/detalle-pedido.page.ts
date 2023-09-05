@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { NavController } from '@ionic/angular';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-detalle-pedido',
@@ -7,9 +9,34 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DetallePedidoPage implements OnInit {
 
-  constructor() { }
+  constructor( public navCtrl: NavController,
+    private alertCtrl: AlertController) { }
 
   ngOnInit() {
   }
 
+  home() {
+    this.navCtrl.navigateRoot('home')
+  }
+
+  logout(){
+    this.navCtrl.navigateRoot('login');
+  }
+
+  public alertButtons = [
+    {
+      text: 'No',
+      cssClass: 'alert-button-cancel',
+    },
+    {
+      text: 'Si',
+      cssClass: 'alert-button-confirm',
+    },
+  ];
+
+  confirmarPedido(){
+    this.navCtrl.navigateRoot('home')
+  }
+  
 }
+

@@ -2,6 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { NavController } from '@ionic/angular';
 import { Animation, AnimationController, IonCard } from '@ionic/angular';
 import { ElementRef } from '@angular/core';
+import { MenuController } from '@ionic/angular';
 
 @Component({
   selector: 'app-home',
@@ -11,17 +12,19 @@ import { ElementRef } from '@angular/core';
 export class HomePage {
   @ViewChild(IonCard, { read: ElementRef }) card: ElementRef<HTMLIonCardElement>;
 
+  user = localStorage.getItem('name')
+
   private animation: Animation;
 
   constructor(public navCtrl: NavController,
-    private animationCtrl: AnimationController) {}
+    private animationCtrl: AnimationController) 
+  {}
 
   logout(){
     this.navCtrl.navigateRoot('login');
   }
 
   ngOnInit(){
-    
   }
 
   ngAfterViewInit() {
@@ -44,5 +47,12 @@ export class HomePage {
 
   stop() {
     this.animation.stop();
+  }
+
+  detailsOpt() {
+    this.navCtrl.navigateRoot('detalle-pedido')
+  }
+  home() {
+    this.navCtrl.navigateRoot('home')
   }
 }

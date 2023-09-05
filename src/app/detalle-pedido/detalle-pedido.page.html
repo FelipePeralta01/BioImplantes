@@ -1,9 +1,40 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>detallePedido</ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-toolbar>
+  <ion-buttons id="main-content">
+    <ion-menu-button auto-hide="false"></ion-menu-button>
+  </ion-buttons>
+</ion-toolbar>
 
-<ion-content [fullscreen]="true">
-  
+<ion-menu contentId="main-content">
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>Menu</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content class="ion-padding">
+    <ion-button (click)="home()" expand="block">Home</ion-button>
+    <ion-button (click)="logout()" expand="block">Cerrar sesion</ion-button>
+  </ion-content>
+</ion-menu>
+
+<ion-content>
+  <ion-card>
+    <ion-card-content>
+      <ion-label>Detalle del pedido</ion-label>
+      <br>
+      <ion-label>Descripción del pedido</ion-label>
+      <form>
+        <ion-list>
+          <ion-item>
+            <ion-select label="Item solicitado" labe-placement="floating">
+              <ion-select-option value="Item 1">Item 1</ion-select-option>
+              <ion-select-option value="Item 2">Item 2</ion-select-option>
+              <ion-select-option value="Item 3">Item 3</ion-select-option>
+            </ion-select>  
+          </ion-item>
+        </ion-list>
+      </form>
+    <ion-button expand="block" id="present-alert">Confirmar pedido</ion-button>
+    <ion-alert trigger="present-alert" class="custom-alert" header="¿Confirmar?" [buttons]="alertButtons" (click)="confirmarPedido()"></ion-alert>
+    </ion-card-content>
+  </ion-card>
 </ion-content>
