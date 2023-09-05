@@ -26,17 +26,18 @@ export class DetallePedidoPage implements OnInit {
   public alertButtons = [
     {
       text: 'No',
-      cssClass: 'alert-button-cancel',
     },
     {
       text: 'Si',
-      cssClass: 'alert-button-confirm',
+      handler: () => {
+        this.toHome()
+      }
     },
+    
   ];
 
-  confirmarPedido(){
+  toHome() {
     this.navCtrl.navigateRoot('home')
   }
-  
 }
 
