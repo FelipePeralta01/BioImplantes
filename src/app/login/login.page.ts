@@ -24,7 +24,12 @@ export class LoginPage implements OnInit {
         'email': new FormControl("",[Validators.required, Validators.email])
       })
     this.formLogin = this.fb.group({
-      'name': new FormControl("",Validators.required),
+      'name': new FormControl("",Validators.compose([
+        Validators.required,
+        Validators.maxLength(10),
+        Validators.minLength(4),
+        Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])[a-zA-Z]+$')
+      ])),
       'password': new FormControl("",Validators.compose([
         Validators.maxLength(8),
         Validators.minLength(8),
