@@ -3,8 +3,8 @@ import { Component, OnInit } from '@angular/core';
 // Import a utilizar 
 import { ActivatedRoute, Router } from '@angular/router';
 import { LoadingController, AlertController } from '@ionic/angular';
-import { ClProducto } from '../producto/model/ClProducto';
-import { ProductoService } from '../producto/producto.service';
+import { ClProducto } from '../model/ClProducto';
+import { ProductoService } from '../producto.service';
 
 
 @Component({

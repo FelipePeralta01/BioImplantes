@@ -5,8 +5,8 @@ import { LoadingController, AlertController } from '@ionic/angular';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormControl, FormGroupDirective, FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 
-import { ClProducto } from '../producto/model/ClProducto';
-import { ProductoService } from '../producto/producto.service';
+import { ClProducto } from '../model/ClProducto';
+import { ProductoService } from '../producto.service';
 
 @Component({
   selector: 'app-product-edit',

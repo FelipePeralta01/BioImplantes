@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroupDirective, FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { LoadingController, AlertController } from '@ionic/angular';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ClProducto } from '../producto/model/ClProducto';
+import { ClProducto } from '../model/ClProducto';
 
-import { ProductoService } from '../producto/producto.service';
+import { ProductoService } from '../producto.service';
 
 
 @Component({
