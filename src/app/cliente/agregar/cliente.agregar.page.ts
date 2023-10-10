@@ -3,10 +3,10 @@ import { ClienteService } from '../cliente.servicio';
 
 @Component({
   selector: 'app-agregar',
-  templateUrl: './agregar.page.html',
-  //styleUrls: ['./agregar.page.scss'],
+  templateUrl: './cliente.agregar.page.html',
+  //styleUrls: ['./cliente.agregar.page.scss'],
 })
-export class AgregarPage {
+export class ClienteAgregarPage {
   // Estructura registro, agrupa varios campos
   // Debieramos utilizar una interface
   registro={

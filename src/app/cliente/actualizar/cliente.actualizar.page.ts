@@ -3,10 +3,10 @@ import { ClienteService } from '../cliente.servicio';
 
 @Component({
     selector: 'app-actualizar',
-    templateUrl: './actualizar.page.html',
-    //styleUrls: ['./actualizar.page.scss'],
+    templateUrl: './cliente.actualizar.page.html',
+    //styleUrls: ['./cliente.actualizar.page.scss'],
 })
-export class ActualizarPage {
+export class ClienteActualizarPage {
     id = "5"
     registro = {
         nombres: "Harrys",

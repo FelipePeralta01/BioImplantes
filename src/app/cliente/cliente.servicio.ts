@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { IRegistro } from './interface/IRegistro'
+import { IRegistro } from './interface/IRegistro';
 
 // Injectable permite utilizar la misma instancia en varias páginas
 // Se pasa como parámetro en el constructor (Injección) 

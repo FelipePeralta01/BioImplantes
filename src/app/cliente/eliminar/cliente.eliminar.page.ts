@@ -3,10 +3,10 @@ import { ClienteService } from '../cliente.servicio';
 
 @Component({
   selector: 'app-eliminar',
-  templateUrl: './eliminar.page.html',
+  templateUrl: './cliente.eliminar.page.html',
   //styleUrls: ['./eliminar.page.scss'],
 })
-export class EliminarPage {
+export class ClienteEliminarPage {
 
   id="6"
 

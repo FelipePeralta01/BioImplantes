@@ -3,18 +3,17 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
-
-import { ListarPageRoutingModule } from './listar-routing.module';
-
-import { ListarPage } from './listar.page';
+import { ClienteAgregarPageRoutingModule } from './cliente.agregar.routing';
+import { ClienteAgregarPage } from './cliente.agregar.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    ListarPageRoutingModule
+    ClienteAgregarPageRoutingModule,
+
   ],
-  declarations: [ListarPage]
+  declarations: [ClienteAgregarPage]
 })
-export class ListarPageModule {}
+export class ClienteAgregarPageModule {}

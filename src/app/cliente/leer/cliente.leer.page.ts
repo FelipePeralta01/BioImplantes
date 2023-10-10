@@ -3,10 +3,10 @@ import { ClienteService } from '../cliente.servicio';
 import { IRegistro } from '../interface/IRegistro';
 @Component({
     selector: 'app-leer',
-    templateUrl: './leer.page.html',
-    //styleUrls: ['./leer.page.scss'],
+    templateUrl: './cliente.leer.page.html',
+    //styleUrls: ['./cliente.leer.page.scss'],
 })
-export class LeerPage {
+export class ClienteLeerPage {
     msgError = ""
     buttonEliminarDisabled = false
     buttonLeerDisabled = false

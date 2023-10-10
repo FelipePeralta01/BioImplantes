@@ -4,17 +4,16 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { LeerPageRoutingModule } from './leer-routing.module';
-
-import { LeerPage } from './leer.page';
+import { ListarPageRoutingModule } from './cliente.listar.routing';
+import { ListarClientePage } from './cliente.listar.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    LeerPageRoutingModule
+    ListarPageRoutingModule
   ],
-  declarations: [LeerPage]
+  declarations: [ListarClientePage]
 })
-export class LeerPageModule {}
+export class ClienteListarPageModule {}
