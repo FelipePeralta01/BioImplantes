@@ -124,15 +124,6 @@ export class ClienteService {
           );
       }
 
-      getClient(): Observable<IRegistro[]> {
-        console.log("getProducts ()");
-        return this.http.get<IRegistro[]>(apiUrl)
-          .pipe(
-            tap(heroes => console.log('fetched clients')),
-            catchError(this.handleError('getClients', []))
-          );
-      }
-
       deleteClient(id: string): Observable<IRegistro> {
         //const url = '${apiUrl}/${id}';
         //return this.http.delete<Producto>(url, httpOptions).pipe(
