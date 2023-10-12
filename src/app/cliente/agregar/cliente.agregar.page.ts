@@ -24,7 +24,7 @@ export class ClienteAgregarPage {
     // Invocamos al método creado en el servicio
     // Le pasamos como parámetro la variable registro
     // registro, contiene todos los campos enlazados del Html
-    this.cliServ.agregarServicio(this.registro)
+    this.cliServ.addClient(this.registro)
   }
 
 }

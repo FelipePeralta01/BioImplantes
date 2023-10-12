@@ -17,7 +17,7 @@ export class ClienteEliminarPage {
   grabar(){
     // Invocamos al método creado en el servicio
     // Le pasamos como parámetro el ID 
-    this.cliServ.eliminarServicio(this.id)
+    this.cliServ.deleteClient(this.id)
   }
 
 }

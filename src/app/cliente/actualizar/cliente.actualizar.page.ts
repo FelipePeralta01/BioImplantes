@@ -24,7 +24,7 @@ export class ClienteActualizarPage {
         // Invocamos al método creado en el servicio
         // Le pasamos como parámetro el ID y la variable registro
         // registro, contiene todos los campos enlazados del Html
-        this.cliServ.actualizarServicio(this.id,this.registro)
+        this.cliServ.updateClient(this.id,this.registro)
     }
 
 

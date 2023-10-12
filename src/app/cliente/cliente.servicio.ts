@@ -1,6 +1,16 @@
 import { Injectable } from '@angular/core';
 import { IRegistro } from './interface/IRegistro';
 
+// Importamos  las librerías necesarias
+import { Observable, of, throwError } from 'rxjs';
+import { catchError, tap, map } from 'rxjs/operators';
+import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
+
+// creamos Constantes que utilizaremos en el envio
+const apiUrl = "http://localhost:3000/usuarios";
+const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
+
+
 // Injectable permite utilizar la misma instancia en varias páginas
 // Se pasa como parámetro en el constructor (Injección) 
 @Injectable({
@@ -18,7 +28,7 @@ export class ClienteService {
             , { id: "122324", nombres: "El Cocodrilo", apellidos: "Picapiedras" }
             , { id: "12232", nombres: "Mario Jose", apellidos: "Picapiedras" }]
 
-    constructor() {
+    constructor( private http: HttpClient) {
         // Revisar CUANDO y CUANTAS veces se inicia el servicio 
         console.log("Inicio Servicio****************}")
     }
@@ -43,10 +53,10 @@ export class ClienteService {
         return this.registros
     }
 
-    agregarServicio(reg:IRegistro){
-        this.registros.push(reg)    
-        console.log("Registro Agregars:",this.registros)
-    }
+   // agregarServicio(reg:IRegistro){
+   //     this.registros.push(reg)    
+   //     console.log("Registro Agregars:",this.registros)
+   // }
     actualizarServicio(id:string,reg:IRegistro){
         console.log("buscando")
         // Buscamos el Objeto por medio del id
@@ -94,4 +104,50 @@ export class ClienteService {
         return {id:"",nombres:"",apellidos:"",correo:"",clave:""}
      }
 
+     private handleError<T>(operation = 'operation', result?: T) {
+        return (error: any): Observable<T> => {
+          console.error("handleError Harrys", error); // log to console instead
+          return of(result as T);
+        };
+      }
+
+     addClient(producto: IRegistro): Observable<IRegistro> {
+        console.log("Res-api Enviando AddCliente : ", producto);
+        // Ojo No lo ejecuta lo declara
+        // El Pipe lo intercepta
+        return this.http.post<IRegistro>(apiUrl, producto, httpOptions)
+          .pipe(  // Tubería
+            // tap intersecta la respuesta si no hay error
+            tap((producto: IRegistro) => console.log('added client w/:', producto)),
+            // En caso de que ocurra Error
+            catchError(this.handleError<IRegistro>('addClient'))
+          );
+      }
+
+      getClients(): Observable<IRegistro[]> {
+        console.log("getProducts ()");
+        return this.http.get<IRegistro[]>(apiUrl)
+          .pipe(
+            tap(heroes => console.log('fetched clients')),
+            catchError(this.handleError('getClients', []))
+          );
+      }
+
+      deleteClient(id: string): Observable<IRegistro> {
+        //const url = '${apiUrl}/${id}';
+        //return this.http.delete<Producto>(url, httpOptions).pipe(
+        return this.http.delete<IRegistro>(apiUrl + "/" + id, httpOptions)
+          .pipe(
+            tap(_ => console.log('deleted client id=${id}')),
+            catchError(this.handleError<IRegistro>('deleteClient'))
+          );
+      }
+
+      updateClient(id: string, producto: IRegistro): Observable<IRegistro> {
+        return this.http.put<IRegistro>(apiUrl + "/" + id, producto, httpOptions)
+          .pipe(
+            tap(_ => console.log('updated client id=${id}')),
+            catchError(this.handleError<any>('updateClient'))
+          );
+      }
 }

@@ -4,6 +4,11 @@ import { Component} from '@angular/core';
 import { ClienteService } from '../cliente.servicio';
 import { IRegistro } from '../interface/IRegistro';
 
+// Importamos Librerías
+import { LoadingController } from '@ionic/angular';
+import { ActivatedRoute, Router } from '@angular/router';
+//import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
+
 @Component({
   selector: 'app-listar',
   templateUrl: './cliente.listar.page.html',
@@ -11,45 +16,51 @@ import { IRegistro } from '../interface/IRegistro';
 })
 export class ListarClientePage {
  
-  //  Referencia ==> Solo tiene la dirección de memoria
-  //  No tiene sentido, solo la utilizamos para el ejemplo
-  registro=this.cliServ.getRegistrosReferencia
+  // Creamos la Variable para el Html
+  clientes: IRegistro[] = [];
+  // Injectamos Librerias
+  constructor(public restApi: ClienteService
+    , public loadingController: LoadingController
+    , public router: Router) { }
 
-  // Recibimos la clase ClienteService 
-  // por parámetro en el constructor(Injección)
-  constructor(private cliServ:ClienteService
-          // Cuando es public la puedo utilizar en el HTML
-              ,public cliServPublic:ClienteService
-              ) { 
-
-    // (get) Solicita la dirección del arreglo
-    // pese que es un mètodo se utiliza como si fuera una variable 
-    // Agrega un registro, lo realiza en el original            
-    this.registro=this.cliServ.getRegistrosReferencia
-    this.registro.push({id:"10",nombres:"M10",apellidos:"P10",correo:"x@c.cl",clave:"1134"})
-    console.log("registroReferencia:",this.registro)
-
-    // (get) Solicita una copia, duplica la memoria ocupada por el arreglo
-    // Se agrega un registro localmente, no se altera el original
-    this.registro=this.cliServ.getRegistrosCopia
-    this.registro.push({id:"20",nombres:"M20",apellidos:"P20",correo:"x@c.cl",clave:"1134"})
-    console.log("registroCopia:",this.registro)
-
-    // Utiliza un método
-    // Agrega un registro en el original
-    this.registro=this.cliServ.getRegistroMetodo();
-    this.registro.push({id:"30",nombres:"M30",apellidos:"P30",correo:"x@c.cl",clave:"1134"})
-    console.log("registroMetodo:",this.registro)
+  // LLamamos al método que rescata los productos  
+  ngOnInit() {
+    this.getClients();
   }
 
-  get getRegistros():IRegistro[]{
-    // Solicita por medio de un acceador una copia 
-    return this.cliServ.getRegistros
+  // Método  que rescta los productos
+  async getClients() {
+    console.log("Entrando :getProducts");
+    // Crea un Wait (Esperar)
+    const loading = await this.loadingController.create({
+      message: 'Harrys Loading...'
+    });
+    // Muestra el Wait
+    await loading.present();
+    console.log("Entrando :");
+    // Obtiene el Observable del servicio
+    await this.restApi.getClients()
+      .subscribe({
+        next: (res) => { 
+          console.log("Res:" + res);
+  // Si funciona asigno el resultado al arreglo productos
+          this.clientes = res;
+          console.log("thisProductos:",this.clientes);
+          loading.dismiss();
+        }
+        , complete: () => { }
+        , error: (err) => {
+  // Si da error, imprimo en consola.
+          console.log("Err:" + err);
+          loading.dismiss();
+        }
+      })
   }
 
-  getRegistrosMetodo():IRegistro[]{
-    // Solicita por medio de un acceador una copia 
-    return this.cliServ.getRegistrosCopia
-  }
 
+  
+  // drop(event: CdkDragDrop<string[]>) {
+  //   console.log("Moviendo Item Array Drop ***************:");
+  //   moveItemInArray(this.productos, event.previousIndex, event.currentIndex);
+  // }
 }
