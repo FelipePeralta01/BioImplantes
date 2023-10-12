@@ -124,7 +124,7 @@ export class ClienteService {
           );
       }
 
-      getClients(): Observable<IRegistro[]> {
+      getClient(): Observable<IRegistro[]> {
         console.log("getProducts ()");
         return this.http.get<IRegistro[]>(apiUrl)
           .pipe(
