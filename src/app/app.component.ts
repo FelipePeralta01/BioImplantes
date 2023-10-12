@@ -16,6 +16,12 @@ export class AppComponent {
     { title: 'Producto/Detail/', url: 'product-detail/', icon: 'mail' },
     { title: 'Producto/Crud', url: 'product-all', icon: 'mail' },
 
+    { title: 'Cliente/Listar', url: '/cliente/listar', icon: 'mail' },
+    { title: 'Cliente/agregar', url: '/cliente/agregar', icon: 'mail' },
+    { title: 'Cliente/Actualizar', url: '/cliente/actualizar', icon: 'mail' },
+    { title: 'Cliente/Eliminar', url: '/cliente/eliminar', icon: 'mail' },
+    { title: 'Cliente/Leer', url: '/cliente/leer', icon: 'mail' },
+
   ];
   constructor() {}
 }

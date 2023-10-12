@@ -38,7 +38,29 @@ const routes: Routes = [
 {
   path: 'product-all',
   loadChildren: () => import('./producto/product-all/product-all.module').then( m => m.ProductAllPageModule)
+},
+{
+  path: 'cliente-agregar',
+  loadChildren: () => import('./cliente/agregar/cliente.agregar.module').then( m => m.ClienteAgregarPageModule)
+},
+{
+  path: 'cliente-actualizar',
+  loadChildren: () => import('./cliente/actualizar/cliente.actualizar.module').then( m => m.ClienteActualizarPageModule)
+},
+{
+  path: 'cliente-eliminar',
+  loadChildren: () => import('./cliente/eliminar/cliente.eliminar.module').then( m => m.ClienteEliminarPageModule)
+},
+{
+  path: 'cliente-leer',
+  loadChildren: () => import('./cliente/leer/cliente.leer.module').then( m => m.ClienteLeerPageModule)
+},
+{
+  path: 'cliente-listar',
+  loadChildren: () => import('./cliente/listar/cliente.listar.module').then( m => m.ClienteListarPageModule)
 }
+  
+  
 
 ];
 
