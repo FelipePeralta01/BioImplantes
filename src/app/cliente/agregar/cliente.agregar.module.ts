@@ -6,11 +6,14 @@ import { IonicModule } from '@ionic/angular';
 import { ClienteAgregarPageRoutingModule } from './cliente.agregar.routing';
 import { ClienteAgregarPage } from './cliente.agregar.page';
 
+import { ReactiveFormsModule } from '@angular/forms';
+
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
+    ReactiveFormsModule,
     ClienteAgregarPageRoutingModule,
 
   ],

@@ -14,32 +14,24 @@
   
   
   <ion-content>
-    <form>
-      <ion-item lines="full">
-        <ion-label position="floating">ID</ion-label>
-        <ion-input type="text" name="txId" [(ngModel)]="id" required></ion-input>
+    <form [formGroup]="clientForm"  (ngSubmit)="onFormSubmit(clientForm.value)">
+      <ion-item>
+        <ion-label position="floating">Cliente nombres</ion-label>
+        <ion-input type="text" [(ngModel)]="cliente.first_name" formControlName="cli_nombres"></ion-input>
       </ion-item>
-      <ion-item lines="full">
-        <ion-label position="floating">Nombre</ion-label>
-        <ion-input type="text" name="txNombres" [(ngModel)]="registro.nombres" required></ion-input>
+      <ion-item>
+        <ion-label position="floating">Cliente apellidos</ion-label>
+        <ion-input type="text" [(ngModel)]="cliente.last_name" formControlName="cli_apellidos"></ion-input>
       </ion-item>
-      <ion-item lines="full">
-        <ion-label position="floating">Apellido</ion-label>
-        <ion-input type="text" name="txApellidos" [(ngModel)]="registro.apellidos" required></ion-input>
+      <ion-item>
+        <ion-label position="stacked">Correo</ion-label>
+        <ion-textarea [(ngModel)]="cliente.email" formControlName="cli_correo"></ion-textarea>
       </ion-item>
-      <ion-item lines="full">
-        <ion-label position="floating">Correo electrónico</ion-label>
-        <ion-input type="text" name="txCorreo" [(ngModel)]="registro.correo" required></ion-input>
+      <ion-item>
+        <ion-label position="floating">Clave</ion-label>
+        <ion-input type="text" [(ngModel)]="cliente.clave" formControlName="cli_clave"></ion-input>
       </ion-item>
-      <ion-item lines="full">
-        <ion-label position="floating">Contraseña</ion-label>
-        <ion-input type="password" name="txClave" [(ngModel)]="registro.clave" required></ion-input>
-      </ion-item>
-      <ion-row>
-        <ion-col>
-          <ion-button (click)="grabar()" color="danger" expand="block">Crear Cuenta</ion-button>
-        </ion-col>
-      </ion-row>
+      <ion-button type="submit" shape="round" color="primary" expand="block" [disabled]="!clientForm.valid">Submit</ion-button>
     </form>
   </ion-content>
   

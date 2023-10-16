@@ -48,11 +48,23 @@ const routes: Routes = [
   loadChildren: () => import('./cliente/actualizar/cliente.actualizar.module').then( m => m.ClienteActualizarPageModule)
 },
 {
+  path: 'cliente-actualizar/:id',
+  loadChildren: () => import('./cliente/actualizar/cliente.actualizar.module').then( m => m.ClienteActualizarPageModule)
+},
+{
   path: 'cliente-eliminar',
   loadChildren: () => import('./cliente/eliminar/cliente.eliminar.module').then( m => m.ClienteEliminarPageModule)
 },
 {
+  path: 'cliente-eliminar/:id',
+  loadChildren: () => import('./cliente/eliminar/cliente.eliminar.module').then( m => m.ClienteEliminarPageModule)
+},
+{
   path: 'cliente-leer',
+  loadChildren: () => import('./cliente/leer/cliente.leer.module').then( m => m.ClienteLeerPageModule)
+},
+{
+  path: 'cliente-leer/:id',
   loadChildren: () => import('./cliente/leer/cliente.leer.module').then( m => m.ClienteLeerPageModule)
 },
 {

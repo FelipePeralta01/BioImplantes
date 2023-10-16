@@ -3,9 +3,9 @@
 // al menos que se declare como opcional con signo de pregunta
 export interface IRegistro{
     id?:String
-    nombres:String
-    apellidos:String
+    first_name:String
+    last_name:String
     //Signo pregunta, permite que el campo sea opcional
-    correo?:String  
+    email?:String  
     clave?:String
 }
