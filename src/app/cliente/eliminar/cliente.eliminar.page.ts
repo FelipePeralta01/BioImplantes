@@ -3,6 +3,8 @@ import { ClienteService } from '../cliente.servicio';
 import { IRegistro } from '../interface/IRegistro';
 import { ActivatedRoute, Router } from '@angular/router';
 import { LoadingController, AlertController } from '@ionic/angular';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-eliminar',
@@ -10,10 +12,10 @@ import { LoadingController, AlertController } from '@ionic/angular';
   //styleUrls: ['./eliminar.page.scss'],
 })
 export class ClienteEliminarPage implements OnInit {
-
+  clientForm!: FormGroup;
   // Creamos registro a utilizar en el Html
-  cliente: IRegistro = {id: '', first_name: '', last_name: '', email: '', clave: ''
-  };
+  cliente: IRegistro = { id: '', first_name: '', last_name: '', email: '', clave: ''
+};
 
   // Injectamos Librerías a utilizar
   constructor(
@@ -22,51 +24,59 @@ export class ClienteEliminarPage implements OnInit {
     , public alertController: AlertController
     , public route: ActivatedRoute
     , public router: Router
+    , private formBuilder: FormBuilder,
+
   ) { }
 
-  // En el OnInit, ejecutamos la lectura
   ngOnInit() {
     this.getClient();
+    this.clientForm = this.formBuilder.group({
+      'cli_id': [null, Validators.required],
+      'cli_nombres': [null, Validators.required],
+      'cli_apellidos': [null, Validators.required],
+      'cli_correo': [null, Validators.required],
+      'cli_clave': [null, Validators.required]
+  });
   }
 
-// Método que permite leer el cliente
-  async getClient() {
-    console.log("getClient **************** ParamMap ID:" + this.route.snapshot.paramMap.get('id'));
-    // Creamos un Wait
-    const loading = await this.loadingController.create({ message: 'Loading...' });
-    // Mostramos el Wait
-    await loading.present();
-    await this.restApi.getClient(this.route.snapshot.paramMap.get('id')!)
-      .subscribe({
-        next: (res) => {
-          console.log("Data *****************");
-          console.log(res);
-          // Si funciona la respuesta la pasamos al cliente
-          this.cliente = res;
-          loading.dismiss();
-        }
-        , complete: () => { }
-        , error: (err) => {
-          //Si no funcion desplegamos en consola el error
-          console.log("Error cliente.eliminar Página", err);
-          loading.dismiss(); //Elimina la espera
-        }
-      })
-  }
+    // Método que permite leer el cliente
+    async getClient() {
+      console.log("getClient **************** ParamMap ID:" + this.route.snapshot.paramMap.get('id'));
+      // Creamos un Wait
+      const loading = await this.loadingController.create({ message: 'Loading...' });
+      // Mostramos el Wait
+      await loading.present();
+      await this.restApi.getClient(this.route.snapshot.paramMap.get('id')!)
+        .subscribe({
+          next: (res) => {
+            console.log("Data *****************");
+            console.log(res);
+            // Si funciona la respuesta la pasamos al cliente
+            this.cliente = res;
+            loading.dismiss();
+          }
+          , complete: () => { }
+          , error: (err) => {
+            //Si no funcion desplegamos en consola el error
+            console.log("Error cliente.eliminar Página", err);
+            loading.dismiss(); //Elimina la espera
+          }
+        })
+    }
 
   // El Html invoca el método delete
-  async delete(id: string) {
+  async delete(id) {
     // Confirma Primero
-    this.presentAlertConfirm(id, 'Confirme la Eliminación, De lo cantrario Cancele');
+    this.presentAlertConfirm(id, '¿Desea eliminar al usuario?');
   }
   // Creamos una rutina para confirmar la eliminación
-  async presentAlertConfirm(id: string, msg: string) {
+  async presentAlertConfirm(id, msg: string) {
     const alert = await this.alertController.create({
       header: 'Warning!', // Título
       message: msg,   // Mensaje
       buttons: [   // Botones
         {
-          text: 'Eliminar : ' + id + " OK",
+          text: 'Eliminar: ' + id + " OK",
           handler: () => { // Si presiona ejecuta esto
             //this.router.navigate(['']);
             this.deleteConfirmado(id)
@@ -79,7 +89,7 @@ export class ClienteEliminarPage implements OnInit {
   }
 
   // Es invocado desde el Alert
-  async deleteConfirmado(id: string) {
+  async deleteConfirmado(id) {
     alert("Eliminando " + id)
     const loading = await this.loadingController.create({
       message: 'Loading...'
@@ -90,7 +100,7 @@ export class ClienteEliminarPage implements OnInit {
         next: (res) => {
           console.log("Error deleteClient Página", res);
           loading.dismiss();
-          this.router.navigate(['/client-listar/']);
+          this.router.navigate(['/cliente-listar/']);
         },
         complete: () => { },
         error: (err) => {

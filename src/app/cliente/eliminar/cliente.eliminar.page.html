@@ -28,7 +28,7 @@
           <p>Clave: </p>
           <p>{{ cliente.clave }}</p>
         </ion-item>
-        <ion-button type="button" shape="round" color="danger" expand="block" (click)='delete("cliente.id")'>Confirme eliminar</ion-button>
+        <ion-button type="button" shape="round" color="danger" expand="block" (click)='delete([cliente.id])'>Confirme eliminar</ion-button>
         <ion-button type="button" shape="round" color="primary" expand="block" href="/cliente-leer/{{cliente.id}}">Cancelar</ion-button>
       </ion-card-content>
     </ion-card>

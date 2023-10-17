@@ -70,7 +70,7 @@ deleteClient(id: string): Observable<IRegistro> {
   return this.http.delete<IRegistro>(apiUrl + "/" + id, httpOptions)
     .pipe(
       tap(_ => console.log('deleted client id=${id}')),
-      catchError(this.handleError<IRegistro>('deleteClient'))
+      catchError(this.handleError<IRegistro>('deleteClient()'))
     );
 }
 
