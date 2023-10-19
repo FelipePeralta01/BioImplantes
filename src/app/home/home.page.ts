@@ -3,6 +3,8 @@ import { NavController } from '@ionic/angular';
 import { Animation, AnimationController, IonCard } from '@ionic/angular';
 import { ElementRef } from '@angular/core';
 import { MenuController } from '@ionic/angular';
+import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-home',
@@ -17,8 +19,26 @@ export class HomePage {
   private animation: Animation;
 
   constructor(public navCtrl: NavController,
-    private animationCtrl: AnimationController) 
+    private animationCtrl: AnimationController,
+    private DomSanitizer:DomSanitizer) 
   {}
+
+  imageSource: any;
+  takePicture = async () => {
+    const image = await Camera.getPhoto({
+      quality: 90,
+      allowEditing: false,
+      resultType: CameraResultType.Uri,
+      source:CameraSource.Prompt,
+      saveToGallery: false
+  });
+  //this.imageSource=image.dataUrl;
+  this.imageSource=this.DomSanitizer.bypassSecurityTrustUrl(image.webPath ? image.webPath : "")
+};
+
+  getPhoto(){
+    return this.imageSource;
+  }
 
   logout(){
     this.navCtrl.navigateRoot('login');
@@ -55,4 +75,6 @@ export class HomePage {
   home() {
     this.navCtrl.navigateRoot('home')
   }
+
+  
 }
