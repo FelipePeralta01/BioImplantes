@@ -24,11 +24,11 @@ export class HomePage {
     private DomSanitizer:DomSanitizer) 
   {}
 
-  async fetchLocation(){
+ async getCurrentPosition() {
     const coordinates = await Geolocation.getCurrentPosition();
-  
-    console.log('Current position:', coordinates);
-  };
+    console.log('Current', coordinates);
+  }
+
   imageSource: any;
   takePicture = async () => {
     const image = await Camera.getPhoto({
