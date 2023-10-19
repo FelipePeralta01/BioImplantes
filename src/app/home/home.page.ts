@@ -5,6 +5,7 @@ import { ElementRef } from '@angular/core';
 import { MenuController } from '@ionic/angular';
 import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
 import { DomSanitizer } from '@angular/platform-browser';
+import { Geolocation } from '@capacitor/geolocation';
 
 @Component({
   selector: 'app-home',
@@ -23,6 +24,11 @@ export class HomePage {
     private DomSanitizer:DomSanitizer) 
   {}
 
+  async fetchLocation(){
+    const coordinates = await Geolocation.getCurrentPosition();
+  
+    console.log('Current position:', coordinates);
+  };
   imageSource: any;
   takePicture = async () => {
     const image = await Camera.getPhoto({
