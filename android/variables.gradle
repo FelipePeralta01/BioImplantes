@@ -16,4 +16,11 @@ ext {
     androidxExifInterfaceVersion = '1.3.6'
     androidxMaterialVersion = '1.8.0'
     playServicesLocationVersion = '21.0.1'
+    googleMapsPlayServicesVersion = '18.1.0'
+    googleMapsUtilsVersion = '3.4.0'
+    googleMapsKtxVersion = '3.4.0'
+    googleMapsUtilsKtxVersion = '3.4.0'
+    kotlinxCoroutinesVersion = '1.6.4'
+    androidxCoreKTXVersion = '1.10.0'
+    kotlin_version = '1.8.20'
 }

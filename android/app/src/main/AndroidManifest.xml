@@ -46,5 +46,7 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-feature android:name="android.hardware.location.gps" />
+    <!--API KEY-->
+    <meta-data android:name="com.google.android.geo.API_KEY" android:value="AIzaSyB6QP-vSFY3Hzzf-3Zq20bMB5NWlt4mI-8"/>>
 
 </manifest>

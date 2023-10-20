@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, NgModule, OnInit, ViewChild } from '@angular/core';
 import { NavController } from '@ionic/angular';
 import { Animation, AnimationController, IonCard } from '@ionic/angular';
 import { ElementRef } from '@angular/core';
@@ -6,17 +6,19 @@ import { MenuController } from '@ionic/angular';
 import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Geolocation } from '@capacitor/geolocation';
+import { GoogleMap } from '@capacitor/google-maps';
+import { environment } from 'src/environments/environment';
+
 
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
-export class HomePage {
-  @ViewChild(IonCard, { read: ElementRef }) card: ElementRef<HTMLIonCardElement>;
+export class HomePage{
+  @ViewChild(IonCard, { read: ElementRef },) card: ElementRef<HTMLIonCardElement>;
 
   user = localStorage.getItem('name')
-
   private animation: Animation;
 
   constructor(public navCtrl: NavController,
@@ -82,5 +84,26 @@ export class HomePage {
     this.navCtrl.navigateRoot('home')
   }
 
+  @ViewChild('map')mapRef: ElementRef;
+  map: GoogleMap;
+
+  ionViewDidEnter(){
+    this.createMap();
+  }
+
+  async createMap(){
+    this.map = await GoogleMap.create({
+      id: 'my-map',
+      apiKey: environment.mapsKey,
+      element: this.mapRef.nativeElement,
+      config: {
+        center: {
+          lat: -33.36312876523604,
+          lng: -70.67792032362487,
+        },
+        zoom: 15,
+      },
+    });
+  }
   
 }
