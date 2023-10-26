@@ -26,6 +26,8 @@ export class ProductListPage implements OnInit {
     this.getProducts();
   }
 
+  codigo: '08-G7';
+
   // Método  que rescta los productos
   async getProducts() {
     console.log("Entrando :getProducts");
@@ -37,7 +39,7 @@ export class ProductListPage implements OnInit {
     await loading.present();
     console.log("Entrando :");
     // Obtiene el Observable del servicio
-    await this.restApi.getProducts()
+    await this.restApi.getProducts(this.codigo)
       .subscribe({
         next: (res) => { 
           console.log("Res:" + res);

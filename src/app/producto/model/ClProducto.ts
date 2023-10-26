@@ -22,7 +22,7 @@ export class ClProducto {
     dv: null;
     enfermedad: null;
     fonocontacto: number;
-    categoria: null;
+    categoria: string;
     editorial: null;
     raza: null;
     edad: null;

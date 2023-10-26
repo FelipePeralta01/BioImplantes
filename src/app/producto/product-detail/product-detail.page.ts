@@ -15,12 +15,25 @@ import { ProductoService } from '../producto.service';
 export class ProductDetailPage implements OnInit {
   // Creamos registro a utilizar en el Html
   producto: ClProducto = {
-    id: 1511
-    , nombre: 'Harrys el Magnifico'
-    , descripcion: 'El Ingenioso'
-    , precio: 100
-    , fecha: new Date()
-    , cantidad: 200
+    idProducto: '',
+    codigo: '08-G7',
+    nombreprod: '',
+    precio: 0,
+    cantidad: 0,
+    fechaNacimiento: '',
+    rut: null,
+    dv: null,
+    enfermedad: null,
+    fonocontacto: 0,
+    categoria: '',
+    editorial: null,
+    raza: null,
+    edad: null,
+    altura: null,
+    hrini: null,
+    hrfin: null,
+    direccion: null,
+    fCreacion: '',
   };
 
   // Injectamos Librerías a utilizar
@@ -63,12 +76,12 @@ export class ProductDetailPage implements OnInit {
   }
 
   // El Html invoca el método delete
-  async delete(id: number) {
+  async delete(id: string) {
     // Confirma Primero
     this.presentAlertConfirm(id, 'Confirme la Eliminación, De lo cantrario Cancele');
   }
   // Creamos una rutina para confirmar la eliminación
-  async presentAlertConfirm(id: number, msg: string) {
+  async presentAlertConfirm(id: string, msg: string) {
     const alert = await this.alertController.create({
       header: 'Warning!', // Título
       message: msg,   // Mensaje
@@ -87,7 +100,7 @@ export class ProductDetailPage implements OnInit {
   }
 
   // Es invocado desde el Alert
-  async deleteConfirmado(id: number) {
+  async deleteConfirmado(id: string) {
     alert("Eliminando " + id)
     const loading = await this.loadingController.create({
       message: 'Loading...'

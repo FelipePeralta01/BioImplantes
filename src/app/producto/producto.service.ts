@@ -64,7 +64,7 @@ getProduct(id: String): Observable<ClProducto> {
     );
 }
 
-deleteProduct(id: number): Observable<ClProducto> {
+deleteProduct(id: string): Observable<ClProducto> {
   //const url = '${apiUrl}/${id}';
   //return this.http.delete<Producto>(url, httpOptions).pipe(
   return this.http.delete<ClProducto>(apiUrl + "/" + id, httpOptions)
@@ -74,7 +74,7 @@ deleteProduct(id: number): Observable<ClProducto> {
     );
 }
 
-updateProduct(id: number, producto: ClProducto): Observable<ClProducto> {
+updateProduct(id: string, producto: ClProducto): Observable<ClProducto> {
   return this.http.put<ClProducto>(apiUrl + "/" + id, producto, httpOptions)
     .pipe(
       tap(_ => console.log('updated product id=${id}')),

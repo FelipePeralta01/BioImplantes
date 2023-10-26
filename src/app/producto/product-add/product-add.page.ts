@@ -29,7 +29,7 @@ export class ProductAddPage implements OnInit {
     dv: null,
     enfermedad: null,
     fonocontacto: 0,
-    categoria: null,
+    categoria: '',
     editorial: null,
     raza: null,
     edad: null,

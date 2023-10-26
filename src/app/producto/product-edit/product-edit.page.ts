@@ -17,7 +17,27 @@ export class ProductEditPage implements OnInit {
   // FormGroup para validaciones
   productForm!: FormGroup;
   // Esquema a utilizar en el Html
-  producto: ClProducto = { id: 1, nombre: '', descripcion: '', precio: 0, fecha: new Date(), cantidad: 0 };
+  producto: ClProducto = {
+    idProducto: '',
+    codigo: '08-G7',
+    nombreprod: '',
+    precio: 0,
+    cantidad: 0,
+    fechaNacimiento: '',
+    rut: null,
+    dv: null,
+    enfermedad: null,
+    fonocontacto: 0,
+    categoria: '',
+    editorial: null,
+    raza: null,
+    edad: null,
+    altura: null,
+    hrini: null,
+    hrfin: null,
+    direccion: null,
+    fCreacion: '',
+  };
   id: any = '';
   //prod_name: string = '';
   //prod_desc: string = '';
@@ -46,7 +66,7 @@ export class ProductEditPage implements OnInit {
   }
   async onFormSubmit(form: NgForm) {
     console.log("onFormSubmit ID:" + this.id)
-    this.producto.id = this.id;
+    this.producto.idProducto = this.id;
     /*this.producto.nombre = form.prod_name;
     this.producto.descripcion = form.prod_desc;
     this.producto.precio = form.prod_price;
@@ -68,7 +88,7 @@ export class ProductEditPage implements OnInit {
   }
 
   // Método que permite leer el producto
-  async getProduct(id: number) {
+  async getProduct(id: string) {
     // Crea Wait
       const loading = await this.loadingController.create({
         message: 'Loading...'
@@ -82,11 +102,11 @@ export class ProductEditPage implements OnInit {
             console.log("getProductID data****");
             console.log(data);
             // Si funciona Rescata el los datos
-            this.id = data.id;
+            this.id = data.idProducto;
             // Actualiza los datos
             this.productForm.setValue({
-              prod_name: data.nombre,
-              prod_desc: data.descripcion,
+              prod_name: data.nombreprod,
+              prod_categoria: data.categoria,
               prod_price: data.precio,
               prod_cantidad: data.cantidad
             });
