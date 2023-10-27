@@ -7,7 +7,7 @@ import { catchError, tap, map } from 'rxjs/operators';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 
 // creamos Constantes que utilizaremos en el envio
-const apiUrl = "http://sumativa2.onrender.com/api/productos/";
+const apiUrl = "http://sumativa2.onrender.com/api/productos";
 const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
 
 
@@ -42,7 +42,7 @@ addProduct(producto: ClProducto): Observable<ClProducto> {
 }
 
 // Obtenemos todos los Productos
-getProducts(codigo: '08-G7'): Observable<ClProducto[]> {
+getProducts(): Observable<ClProducto[]> {
   console.log("getProducts ()");
   return this.http.get<ClProducto[]>(apiUrl)
     .pipe(

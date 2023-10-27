@@ -59,7 +59,7 @@ export class ProductEditPage implements OnInit {
     // Especificamos Validaciones por medio de FormGroup
     this.productForm = this.formBuilder.group({
       'prod_name': [null, Validators.required],
-      'prod_desc': [null, Validators.required],
+      'prod_categoria': [null, Validators.required],
       'prod_price': [null, Validators.required],
       'prod_cantidad': [null, Validators.required]
     });
@@ -132,7 +132,7 @@ export class ProductEditPage implements OnInit {
           text: 'Okay',
           handler: () => {
             //Si funciona el actualizar navega a listar
-            this.router.navigate(['/product-list/']);
+            this.router.navigate(['/product-list']);
           }
         }
       ]
