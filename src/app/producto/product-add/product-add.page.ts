@@ -20,11 +20,11 @@ export class ProductAddPage implements OnInit {
   // Generalmente se usa una interface, sin embargo para jugar utilizaremos  una clase
   producto: ClProducto = {
     idProducto: '',
-    codigo: '08-G7',
+    codigo: '08-G07',
     nombreprod: '',
     precio: 0,
     cantidad: 0,
-    fechaNacimiento: '',
+    fechaNacimiento: null,
     rut: null,
     dv: null,
     enfermedad: null,
@@ -37,7 +37,7 @@ export class ProductAddPage implements OnInit {
     hrini: null,
     hrfin: null,
     direccion: null,
-    fCreacion: '',
+    fCreacion: null
   };
 
   // Injectamos FormBuilder, el cual nos permitirá realizar validaciones                         
@@ -57,7 +57,8 @@ export class ProductAddPage implements OnInit {
       "prod_name": [null, Validators.required],
       'prod_categoria': [null, Validators.required],
       'prod_price': [null, Validators.required],
-      'prod_cantidad': [null, Validators.required]
+      'prod_cantidad': [null, Validators.required],
+      'prod_fonocontacto': [null, Validators.required]
     });
   }
   // se ejecutará cuando presione el Submit

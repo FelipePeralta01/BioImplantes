@@ -20,7 +20,7 @@ export class ProductDetailPage implements OnInit {
     nombreprod: '',
     precio: 0,
     cantidad: 0,
-    fechaNacimiento: '',
+    fechaNacimiento: null,
     rut: null,
     dv: null,
     enfermedad: null,
@@ -33,7 +33,7 @@ export class ProductDetailPage implements OnInit {
     hrini: null,
     hrfin: null,
     direccion: null,
-    fCreacion: '',
+    fCreacion: null,
   };
 
   // Injectamos Librerías a utilizar
@@ -76,21 +76,27 @@ export class ProductDetailPage implements OnInit {
   }
 
   // El Html invoca el método delete
-  async delete(id: string) {
+  async delete(idProducto: string) {
     // Confirma Primero
-    this.presentAlertConfirm(id, 'Confirme la Eliminación, De lo cantrario Cancele');
+    this.presentAlertConfirm(idProducto, 'Confirme la Eliminación, De lo cantrario Cancele');
   }
   // Creamos una rutina para confirmar la eliminación
-  async presentAlertConfirm(id: string, msg: string) {
+  async presentAlertConfirm(idProducto: string, msg: string) {
     const alert = await this.alertController.create({
       header: 'Warning!', // Título
       message: msg,   // Mensaje
       buttons: [   // Botones
         {
-          text: 'Eliminar : ' + id + " OK",
+          text: 'Eliminar : ' + idProducto + " OK",
           handler: () => { // Si presiona ejecuta esto
             //this.router.navigate(['']);
-            this.deleteConfirmado(id)
+            this.deleteConfirmado(idProducto)
+          }
+        },
+        {
+          text: 'Cancelar',
+          handler: () => {
+            this.router.navigate(["/product-list"])
           }
         }
       ]

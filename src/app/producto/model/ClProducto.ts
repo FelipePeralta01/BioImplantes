@@ -17,7 +17,7 @@ export class ClProducto {
     nombreprod: string;
     precio: number;
     cantidad: number;
-    fechaNacimiento: string;
+    fechaNacimiento: null;
     rut: null;
     dv: null;
     enfermedad: null;
@@ -30,7 +30,7 @@ export class ClProducto {
     hrini: null;
     hrfin: null;
     direccion: null;
-    fCreacion: string;
+    fCreacion: null;
   
     // si no Inicializo los valores, da Error
     constructor(obj: any){

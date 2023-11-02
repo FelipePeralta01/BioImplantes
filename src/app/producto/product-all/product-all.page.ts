@@ -18,7 +18,7 @@ export class ProductAllPage implements OnInit {
     nombreprod: '',
     precio: 0,
     cantidad: 0,
-    fechaNacimiento: '',
+    fechaNacimiento: null,
     rut: null,
     dv: null,
     enfermedad: null,
@@ -31,7 +31,7 @@ export class ProductAllPage implements OnInit {
     hrini: null,
     hrfin: null,
     direccion: null,
-    fCreacion: '',
+    fCreacion: null,
   };
 
   constructor() { }

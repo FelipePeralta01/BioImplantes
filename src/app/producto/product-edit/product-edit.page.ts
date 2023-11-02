@@ -23,7 +23,7 @@ export class ProductEditPage implements OnInit {
     nombreprod: '',
     precio: 0,
     cantidad: 0,
-    fechaNacimiento: '',
+    fechaNacimiento: null,
     rut: null,
     dv: null,
     enfermedad: null,
@@ -36,13 +36,9 @@ export class ProductEditPage implements OnInit {
     hrini: null,
     hrfin: null,
     direccion: null,
-    fCreacion: '',
+    fCreacion: null,
   };
   id: any = '';
-  //prod_name: string = '';
-  //prod_desc: string = '';
-  //prod_price:number=null;
-  //prod_cantidad:number=null
 
   // Injectamos librerías
   constructor(public restApi: ProductoService,
@@ -74,7 +70,7 @@ export class ProductEditPage implements OnInit {
     */
     // si envio form, envio los nombres del campo del formulario
     //await this.restApi.updateProduct(this.id, form)
-    await this.restApi.updateProduct(this.id, this.producto)
+    await this.restApi.updateProduct(this.id, this.producto,)
       .subscribe({
         next: (res) => {
           let id = res['id'];
