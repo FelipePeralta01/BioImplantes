@@ -12,25 +12,25 @@
 export class ClProducto {
     // si no Inicializo los valores, da Error
     // Por eso es el constructor por obligación
-    idProducto: string;
+    idProducto: number;
     codigo: string;
     nombreprod: string;
     precio: number;
     cantidad: number;
-    fechaNacimiento: null;
-    rut: null;
-    dv: null;
-    enfermedad: null;
+    fechaNacimiento: string;
+    rut: number;
+    dv: string;
+    enfermedad: string;
     fonocontacto: number;
     categoria: string;
-    editorial: null;
-    raza: null;
-    edad: null;
-    altura: null;
-    hrini: null;
-    hrfin: null;
-    direccion: null;
-    fCreacion: null;
+    editorial: string;
+    raza: string;
+    edad: number;
+    altura: number;
+    hrini: string;
+    hrfin: string;
+    direccion: string;
+    fCreacion: string;
   
     // si no Inicializo los valores, da Error
     constructor(obj: any){

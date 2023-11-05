@@ -18,27 +18,27 @@ export class ProductEditPage implements OnInit {
   productForm!: FormGroup;
   // Esquema a utilizar en el Html
   producto: ClProducto = {
-    idProducto: '',
-    codigo: '08-G7',
-    nombreprod: '',
+    idProducto: 0,
+    codigo: '08-G07',
+    nombreprod: '0',
     precio: 0,
     cantidad: 0,
-    fechaNacimiento: null,
-    rut: null,
-    dv: null,
-    enfermedad: null,
+    fechaNacimiento: '0',
+    rut: 0,
+    dv: '0',
+    enfermedad: '0',
     fonocontacto: 0,
-    categoria: '',
-    editorial: null,
-    raza: null,
-    edad: null,
-    altura: null,
-    hrini: null,
-    hrfin: null,
-    direccion: null,
-    fCreacion: null,
+    categoria: '0',
+    editorial: '0',
+    raza: '0',
+    edad: 0,
+    altura: 0,
+    hrini: '0',
+    hrfin: '0',
+    direccion: '0',
+    fCreacion: '0'
   };
-  id: any = '';
+  id: any = 0;
 
   // Injectamos librerías
   constructor(public restApi: ProductoService,

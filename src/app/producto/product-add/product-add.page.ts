@@ -13,31 +13,27 @@ import { ProductoService } from '../producto.service';
   styleUrls: ['./product-add.page.scss'],
 })
 export class ProductAddPage implements OnInit {
-  //Creamos una variable del tipo FormGroup
-  // ! ==> Con esto le decimos a TS, que sabemos que la variable no esta inicializada
-  //          y que estamos seguro que cuando se ejecute no será null
   productForm!: FormGroup;
-  // Generalmente se usa una interface, sin embargo para jugar utilizaremos  una clase
   producto: ClProducto = {
-    idProducto: '',
+    idProducto: 0,
     codigo: '08-G07',
-    nombreprod: '',
+    nombreprod: '0',
     precio: 0,
     cantidad: 0,
-    fechaNacimiento: null,
-    rut: null,
-    dv: null,
-    enfermedad: null,
+    fechaNacimiento: '0',
+    rut: 0,
+    dv: '0',
+    enfermedad: '0',
     fonocontacto: 0,
-    categoria: '',
-    editorial: null,
-    raza: null,
-    edad: null,
-    altura: null,
-    hrini: null,
-    hrfin: null,
-    direccion: null,
-    fCreacion: null
+    categoria: '0',
+    editorial: '0',
+    raza: '0',
+    edad: 0,
+    altura: 0,
+    hrini: '0',
+    hrfin: '0',
+    direccion: '0',
+    fCreacion: '0'
   };
 
   // Injectamos FormBuilder, el cual nos permitirá realizar validaciones                         
@@ -45,7 +41,7 @@ export class ProductAddPage implements OnInit {
     // Injectamos las librerías necesarias
     private loadingController: LoadingController,
     private restApi: ProductoService,
-    private router: Router,
+    private router: Router
   ) { }
 
   // Antes que inicie en pantalla
@@ -73,22 +69,22 @@ export class ProductAddPage implements OnInit {
     await loading.present();
 
     // Ejecuta el método del servicio y los suscribe
-    await this.restApi.addProduct(this.producto)
+    this.restApi.addProduct(this.producto)
       .subscribe({
         next: (res) => {
-          console.log("Next AddProduct Page",res)
+          console.log("Next AddProduct Page", res);
           loading.dismiss(); //Elimina la espera
-          if (res== null){ // No viene respuesta del registro
+          if (res == null) { // No viene respuesta del registro
             console.log("Next No Agrego, Ress Null ");
-            return
+            return;
           }
           // Si viene respuesta
-          console.log("Next Agrego SIIIIII Router saltaré ;",this.router);
-          this.router.navigate(['/product-list']);
-        }
-        , complete: () => { }
-        , error: (err) => {
-          console.log("Error AddProduct Página",err);
+          console.log("Next Agrego SIIIIII Router saltaré ;", this.router);
+          this.router.navigate(['/product-list/']);
+        },
+        complete: () => { },
+        error: (err) => {
+          console.log("Error AddProduct Página", err);
           loading.dismiss(); //Elimina la espera
         }
       });

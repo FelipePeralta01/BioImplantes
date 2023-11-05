@@ -26,11 +26,6 @@ export class HomePage{
     private DomSanitizer:DomSanitizer) 
   {}
 
- async getCurrentPosition() {
-    const coordinates = await Geolocation.getCurrentPosition();
-    console.log('Current', coordinates);
-  }
-
   imageSource: any;
   takePicture = async () => {
     const image = await Camera.getPhoto({
@@ -84,22 +79,37 @@ export class HomePage{
     this.navCtrl.navigateRoot('home')
   }
 
+  // Se obtienen las coordenadas a insertar en el mapa
+  async getCurrentPosition() {
+    try {
+      const coordinates = await Geolocation.getCurrentPosition();
+      console.log('Current', coordinates);
+  
+      // Luego, llamar a la función para crear el mapa pasando las coordenadas
+      this.createMap(coordinates.coords.latitude, coordinates.coords.longitude);
+    } catch (error) {
+      console.error('Error getting current position', error);
+    }
+  }
+
   @ViewChild('map')mapRef: ElementRef;
   map: GoogleMap;
 
-  ionViewDidEnter(){
-    this.createMap();
+  ionViewDidEnter() {
+    // Llamar a getCurrentPosition al entrar en la vista
+    this.getCurrentPosition();
   }
 
-  async createMap(){
+  async createMap(latitude: number, longitude: number) {
     this.map = await GoogleMap.create({
       id: 'my-map',
       apiKey: environment.mapsKey,
       element: this.mapRef.nativeElement,
+      // Usar las coordenadas obtenidas para centrar el mapa
       config: {
         center: {
-          lat: -33.36312876523604,
-          lng: -70.67792032362487,
+          lat: latitude,
+          lng: longitude,
         },
         zoom: 15,
       },

@@ -5,7 +5,7 @@
     </ion-buttons>
     <ion-title>Productos</ion-title>
     <ion-buttons slot="end">
-      <ion-back-button defaultHref="/"></ion-back-button>
+      <ion-back-button href="/product-list/"></ion-back-button>
     </ion-buttons>
 
   </ion-toolbar>
@@ -22,19 +22,19 @@
   </ion-item>
   <ion-list padding>
     <!-- Recorremos el arreglo de registros utilizando item-->
-    <ion-item *ngFor="let p of productos">
+    <ion-item *ngFor="let producto of productos">
       <!-- Icono al inicio (start)-->
       <ion-icon name="star" slot="start"></ion-icon>
       <!-- Campos de item -->
-      <ion-label>{{p.nombreprod}}</ion-label>
+      <ion-label>{{producto.nombreprod}}</ion-label>
       <br>
-      <ion-label>{{p.precio | currency:' ':true:'1.0-2'}}</ion-label>
+      <ion-label>{{producto.precio | currency:' ':true:'1.0-2'}}</ion-label>
       <!-- Icono al final -->
       <ion-icon name="information-circle" slot="end"></ion-icon>
       <!-- routerlink salta a otra pagina-->
-      <ion-button [routerLink]="['/product-edit/',p.idProducto]">Edit</ion-button><br />
+      <ion-button [routerLink]="['/product-edit/',producto.idProducto]">Edit</ion-button><br />
       <!-- routerlink salta a otra pagina, pero con id del item-->
-      <ion-button [routerLink]="['/product-detail/',p.idProducto]">Detail</ion-button><br />
+      <ion-button [routerLink]="['/product-detail/',producto.idProducto]">Detail</ion-button><br />
     </ion-item>
   </ion-list>
 

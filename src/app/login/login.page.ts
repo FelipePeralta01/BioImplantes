@@ -3,6 +3,7 @@ import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms'
 import { AlertController, NavController } from '@ionic/angular';
 import { IonModal } from '@ionic/angular';
 import { OverlayEventDetail } from '@ionic/core/components';
+import { Storage } from '@ionic/storage-angular';
 
 
 
@@ -19,6 +20,7 @@ export class LoginPage implements OnInit {
 
   constructor(public fb: FormBuilder,
     public alertController: AlertController,
+    private storage: Storage,
     public navCtrl: NavController) {
       this.modalForm = this.fb.group({
         'email': new FormControl("",[Validators.required, Validators.email])
@@ -57,8 +59,8 @@ export class LoginPage implements OnInit {
       this.navCtrl.navigateRoot('home');
     }
 
-    localStorage.setItem('name', f.name);
-    localStorage.setItem('password', f.password);
+    this.storage.set('name', f.name);
+    this.storage.set('password', f.password);
   }
 
   email: string;
