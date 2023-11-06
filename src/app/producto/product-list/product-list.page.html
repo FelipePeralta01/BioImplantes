@@ -1,22 +1,17 @@
 <ion-header>
   <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
-    </ion-buttons>
     <ion-title>Productos</ion-title>
-    <ion-buttons slot="end">
-      <ion-back-button href="/product-list/"></ion-back-button>
-    </ion-buttons>
-
   </ion-toolbar>
 </ion-header>
-
 <ion-content>
 
   <ion-item>
     <ion-label>
       <font color="red">¿Deseas agregar un nuevo Producto?
-        <ion-button [routerLink]="['/product-add']">Agregar</ion-button>
+        <br>
+        <br>
+        <ion-button  [routerLink]="['/product-add']">Agregar</ion-button>
+        <ion-button [routerLink]="['/home']">Volver</ion-button>
       </font>
     </ion-label>
   </ion-item>

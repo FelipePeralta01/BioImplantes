@@ -1,5 +1,4 @@
 import { Component, NgModule, OnInit, ViewChild } from '@angular/core';
-import { NavController } from '@ionic/angular';
 import { Animation, AnimationController, IonCard } from '@ionic/angular';
 import { ElementRef } from '@angular/core';
 import { MenuController } from '@ionic/angular';
@@ -8,6 +7,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { Geolocation } from '@capacitor/geolocation';
 import { GoogleMap } from '@capacitor/google-maps';
 import { environment } from 'src/environments/environment';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -21,7 +21,8 @@ export class HomePage{
   user = localStorage.getItem('name')
   private animation: Animation;
 
-  constructor(public navCtrl: NavController,
+  constructor(
+    private router: Router,
     private animationCtrl: AnimationController,
     private DomSanitizer:DomSanitizer) 
   {}
@@ -44,7 +45,7 @@ export class HomePage{
   }
 
   logout(){
-    this.navCtrl.navigateRoot('login');
+    this.router.navigate(['/login']);
   }
 
   ngOnInit(){
@@ -73,10 +74,15 @@ export class HomePage{
   }
 
   detailsOpt() {
-    this.navCtrl.navigateRoot('detalle-pedido')
+    this.router.navigate(['/detalle-pedido'])
   }
+
   home() {
-    this.navCtrl.navigateRoot('home')
+    this.router.navigate(['/home'])
+  }
+
+  admin(){
+    this.router.navigate(['/product-list'])
   }
 
   // Se obtienen las coordenadas a insertar en el mapa

@@ -12,13 +12,14 @@
   </ion-header>
   <ion-content class="ion-padding">
     <ion-button (click)="home()" expand="block">Home</ion-button>
+    <ion-button (click)="admin()" expand="block">Lista de productos</ion-button>
     <ion-button (click)="logout()" expand="block">Cerrar sesion</ion-button>
   </ion-content>
 </ion-menu>
 
 <ion-content>
   <ion-card #card>
-    <p class="ion-padding">Bienvenido a BioImplantes! {{ user }}</p>
+    <p class="ion-padding">Bienvenido a BioImplantes! Admin {{ user }}</p>
   </ion-card>
 
   <ion-card #card>
@@ -37,6 +38,8 @@
     </ion-grid>
     <br>
     <capacitor-google-map #map></capacitor-google-map>
+    <br>
+    <br>
   </ion-card>
 </ion-content>
   

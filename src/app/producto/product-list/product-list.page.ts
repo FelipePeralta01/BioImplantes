@@ -54,6 +54,17 @@ export class ProductListPage implements OnInit {
       });
   }
   
+  logout(){
+    this.router.navigate(['/login']);
+  }
+
+  home() {
+    this.router.navigate(['/home'])
+  }
+
+  admin(){
+    this.router.navigate(['/product-list'])
+  }
 
 }
 
