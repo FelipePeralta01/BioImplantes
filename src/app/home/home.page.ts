@@ -3,7 +3,6 @@ import { Animation, AnimationController, IonCard } from '@ionic/angular';
 import { ElementRef } from '@angular/core';
 import { MenuController } from '@ionic/angular';
 import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
-import { DomSanitizer } from '@angular/platform-browser';
 import { Geolocation } from '@capacitor/geolocation';
 import { GoogleMap } from '@capacitor/google-maps';
 import { environment } from 'src/environments/environment';
@@ -23,8 +22,7 @@ export class HomePage{
 
   constructor(
     private router: Router,
-    private animationCtrl: AnimationController,
-    private DomSanitizer:DomSanitizer) 
+    private animationCtrl: AnimationController) 
   {}
 
   imageSource: any;
@@ -36,8 +34,8 @@ export class HomePage{
       source:CameraSource.Prompt,
       saveToGallery: false
   });
-  //this.imageSource=image.dataUrl;
-  this.imageSource=this.DomSanitizer.bypassSecurityTrustUrl(image.webPath ? image.webPath : "")
+  this.imageSource=image.dataUrl;
+  localStorage.setItem('picture', this.imageSource)
 };
 
   getPhoto(){
@@ -81,10 +79,6 @@ export class HomePage{
     this.router.navigate(['/home'])
   }
 
-  admin(){
-    this.router.navigate(['/product-list'])
-  }
-
   // Se obtienen las coordenadas a insertar en el mapa
   async getCurrentPosition() {
     try {
@@ -120,6 +114,16 @@ export class HomePage{
         zoom: 15,
       },
     });
+
+    //se añade marcador de ubicacion
+    const markerId = await this.map.addMarker({
+      coordinate: {
+        lat: latitude,
+        lng: longitude
+      }
+    });
   }
+
+  
   
 }
