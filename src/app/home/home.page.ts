@@ -7,6 +7,8 @@ import { GoogleMap } from '@capacitor/google-maps';
 import { environment } from 'src/environments/environment';
 import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
+import { DomSanitizer } from '@angular/platform-browser';
+import { Storage } from '@ionic/storage-angular';
 
 
 @Component({
@@ -23,7 +25,9 @@ export class HomePage implements OnInit {
     private router: Router,
     private animationCtrl: AnimationController,
     private authService: AuthService,
-    private navCtrl: NavController,) 
+    private navCtrl: NavController,
+    private DomSanitizer: DomSanitizer,
+    private storage: Storage) 
   {}
   
   async logout(){
@@ -48,8 +52,8 @@ export class HomePage implements OnInit {
       source:CameraSource.Prompt,
       saveToGallery: false
   });
-  this.imageSource=image.dataUrl;
-  localStorage.setItem('picture', this.imageSource)
+  this.imageSource=this.DomSanitizer.bypassSecurityTrustUrl(image.webPath ? image.webPath : "")
+  this.storage.set('pic', image)
 };
 
   getPhoto(){
