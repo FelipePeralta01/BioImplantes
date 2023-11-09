@@ -5,6 +5,7 @@ import { IonModal } from '@ionic/angular';
 import { OverlayEventDetail } from '@ionic/core/components';
 import { Storage } from '@ionic/storage-angular';
 import { Router } from '@angular/router';
+import { AuthService } from '../auth.service';
 
 
 
@@ -13,55 +14,42 @@ import { Router } from '@angular/router';
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss'],
 })
-export class LoginPage implements OnInit {
+export class LoginPage {
+
+  username: string = '';
+  password: string = '';
+
   @ViewChild(IonModal) modal: IonModal;
 
-  formLogin: FormGroup;
   modalForm : FormGroup;
 
-  constructor(public fb: FormBuilder,
-    public alertController: AlertController,
-    private storage: Storage,
-    private router: Router,) {
+  constructor(public fb: FormBuilder, public alertController: AlertController, private storage: Storage, private router: Router, private navCtrl: NavController, private authService: AuthService) {
       this.modalForm = this.fb.group({
         'email': new FormControl("",[Validators.required, Validators.email])
       })
-    this.formLogin = this.fb.group({
-      'name': new FormControl("",Validators.compose([
-        Validators.required,
-        Validators.maxLength(10),
-        Validators.minLength(4),
-        Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])[a-zA-Z]+$')
-      ])),
-      'password': new FormControl("",Validators.compose([
-        Validators.maxLength(8),
-        Validators.minLength(8),
-        Validators.required,
-        Validators.pattern('^(?=.*[a-z]{1,3})(?=.*[A-Z]{1})(?=.*[0-9]{4})[a-zA-Z0-9]+$')
-      ]))
-    })
    }
 
-  ngOnInit() {
+   async login() {
+    if (this.username && this.password) {
+      const loggedIn: boolean = await this.authService.login(this.username, this.password);
+      if (loggedIn) {
+        this.navCtrl.navigateRoot('/home');
+      } else {
+        console.log('Credenciales incorrectas');
+      }
+    } else {
+      console.log('Por favor, ingrese nombre de usuario y contraseña.');
+    }
   }
+  
 
-  async login(){
-    var f = this.formLogin.value;
-    if(this.formLogin.invalid){
-      const alert = await this.alertController.create({
-        header: 'ERROR',
-        message: 'Tienes que ingresar los datos',
-        buttons: ['Aceptar']
-      });
-      await alert.present();
-        return;
+  async register() {
+    const registered = await this.authService.register(this.username, this.password);
+    if (registered) {
+      console.log('Usuario registrado correctamente',this.username);
+    } else {
+      console.log('Error al registrar el usuario');
     }
-    if(this.formLogin.valid){
-      this.router.navigate(['/home']);
-    }
-
-    localStorage.setItem('name', f.name);
-    localStorage.setItem('password', f.password);
   }
 
   email: string;

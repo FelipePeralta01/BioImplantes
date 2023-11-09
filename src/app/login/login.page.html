@@ -10,19 +10,21 @@
       <ion-card-title class="ion-padding" >Inicia sesion</ion-card-title>
     </ion-card-header>
     <ion-card-content>
-      <form [formGroup]="formLogin">
         <ion-item>
           <ion-label position="floating">Nombre</ion-label>
-          <ion-input formControlName="name"></ion-input>
+          <ion-input [(ngModel)]="username" name="username" type="text"></ion-input>
         </ion-item>
         <ion-item>
           <ion-label position="floating">Contraseña</ion-label>
-          <ion-input maxlength="8" formControlName="password" type="password"></ion-input>
+          <ion-input [(ngModel)]="password" name="password" type="password"></ion-input>
         </ion-item>
-      </form>
       <br>
       <ion-button fill="outline" expand="block" (click)="login()">Iniciar sesion</ion-button>
+      <ion-button fill="outline" expand="block" (click)="register()">Registrarse</ion-button>
       <br>
+
+      
+      <!--Modal para recuperar contraseña-->
       <ion-button size="small" fill="clear" id="open-modal">Recuperar contraseña</ion-button>
       <ion-modal trigger="open-modal" (willDismiss)="onWillDismiss($event)">
         <ng-template>

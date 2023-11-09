@@ -1,12 +1,12 @@
 import { Component, NgModule, OnInit, ViewChild } from '@angular/core';
-import { Animation, AnimationController, IonCard } from '@ionic/angular';
+import { Animation, AnimationController, IonCard, NavController } from '@ionic/angular';
 import { ElementRef } from '@angular/core';
-import { MenuController } from '@ionic/angular';
 import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
 import { Geolocation } from '@capacitor/geolocation';
 import { GoogleMap } from '@capacitor/google-maps';
 import { environment } from 'src/environments/environment';
 import { Router } from '@angular/router';
+import { AuthService } from '../auth.service';
 
 
 @Component({
@@ -14,16 +14,30 @@ import { Router } from '@angular/router';
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
-export class HomePage{
+export class HomePage implements OnInit {
   @ViewChild(IonCard, { read: ElementRef },) card: ElementRef<HTMLIonCardElement>;
 
-  user = localStorage.getItem('name')
   private animation: Animation;
 
   constructor(
     private router: Router,
-    private animationCtrl: AnimationController) 
+    private animationCtrl: AnimationController,
+    private authService: AuthService,
+    private navCtrl: NavController,) 
   {}
+  
+  async logout(){
+    await this.authService.logout();
+    this.navCtrl.navigateRoot('/login');
+  }
+
+  user: string | null = null;
+
+  ngOnInit() {
+    this.authService.getUser().then(username =>{
+      this.user = username;
+    });
+  }
 
   imageSource: any;
   takePicture = async () => {
@@ -40,13 +54,6 @@ export class HomePage{
 
   getPhoto(){
     return this.imageSource;
-  }
-
-  logout(){
-    this.router.navigate(['/login']);
-  }
-
-  ngOnInit(){
   }
 
   ngAfterViewInit() {
@@ -73,10 +80,6 @@ export class HomePage{
 
   detailsOpt() {
     this.router.navigate(['/detalle-pedido'])
-  }
-
-  home() {
-    this.router.navigate(['/home'])
   }
 
   // Se obtienen las coordenadas a insertar en el mapa
