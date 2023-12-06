@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites errors="1"
+            failures="0"
+            tests="1">
+
+  <testsuite name="test.test"
+    errors="1" failures="0" hostname="" id="" package="test" skipped="0"
+    tests="1" time="10.28" timestamp="">
+  
+    <testcase name="My Nightwatch Test" classname="test.test" time="5.141" assertions="1">
+
+    
+    <error message="Timed out while waiting for element &#34;By(xpath, .//*[text()=&#34;Iniciar Sesion&#34;])&#34; to be present for 5000 milliseconds." type="error"><![CDATA[
+    Error: Timed out while waiting for element &#34;By(xpath, .//*[text()=&#34;Iniciar Sesion&#34;])&#34; to be present for 5000 milliseconds.
+    at createNarrowedError (C:\Users\feper\OneDrive\Escritorio\Duoc\BioImplantes\node_modules\nightwatch\lib\api\web-element\scoped-element.js:317:7)
+    at C:\Users\feper\OneDrive\Escritorio\Duoc\BioImplantes\node_modules\nightwatch\lib\api\web-element\scoped-element.js:163:31
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    ]]></error>
+    
+    </testcase>
+  
+
+  
+    <system-err>
+       Error
+   Timed out while waiting for element &#34;By(xpath, .//*[text()=&#34;Iniciar Sesion&#34;])&#34; to be present for 5000 milliseconds.
+    </system-err>
+  
+
+    
+
+  
+  </testsuite>
+</testsuites>
